@@ -226,3 +226,4 @@ CREATE TABLE stock_transactions (
         REFERENCES users(id)
         ON DELETE SET NULL
 );
+
