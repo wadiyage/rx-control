@@ -1,7 +1,3 @@
--- =========================================
--- RX Control Pharmacy Management System
--- Database Initialization
--- =========================================
 
 CREATE DATABASE IF NOT EXISTS rx_control
 CHARACTER SET utf8mb4
@@ -9,56 +5,41 @@ COLLATE utf8mb4_unicode_ci;
 
 USE rx_control;
 
--- ==============================
--- USERS
--- ==============================
-CREATE TABLE users (
+CREATE TABLE Users (
     id INT AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(50) NOT NULL UNIQUE,
-    password_hash VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NOT NULL,
     full_name VARCHAR(100) NOT NULL,
     role ENUM('ADMIN','PHARMACIST','CASHIER') NOT NULL,
     status ENUM('ACTIVE','INACTIVE') DEFAULT 'ACTIVE',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- ==============================
--- CUSTOMERS
--- ==============================
-CREATE TABLE customers (
+CREATE TABLE Customers (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(100),
-    phone VARCHAR(20),
+    phone_number VARCHAR(20),
     address TEXT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- ==============================
--- SUPPLIERS
--- ==============================
-CREATE TABLE suppliers (
+CREATE TABLE Suppliers (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(150) NOT NULL,
     contact_person VARCHAR(100),
-    phone VARCHAR(20),
+    phone_number VARCHAR(20),
     email VARCHAR(100),
     address TEXT,
     status ENUM('ACTIVE','INACTIVE') DEFAULT 'ACTIVE',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- ==============================
--- MEDICINE CATEGORIES
--- ==============================
 CREATE TABLE medicine_categories (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(100) NOT NULL UNIQUE,
     description TEXT
 );
 
--- ==============================
--- MEDICINES (PRODUCT MASTER)
--- ==============================
 CREATE TABLE medicines (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(150) NOT NULL,
